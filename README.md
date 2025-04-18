@@ -6,12 +6,7 @@
   <img src="combine_harvester.png" alt="Combine Harvester Logo">
 </p>
 
-<style>
-.justified {
-  text-align: justify;
-  text-justify: inter-word;
-}
-</style>
+
 
 <div class="justified">
 
