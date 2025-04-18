@@ -1,44 +1,33 @@
-# Combine Harvester
+<h1 align="center">Combine Harvester</h1>
+
+<p align="center"><em>When you mix coffee, red bull and jetfuel </em></p>
 
 <p align="center">
   <img src="combine_harvester.png" alt="Combine Harvester Logo">
 </p>
 
+<style>
+.justified {
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+
+<div class="justified">
+
 # Introduction
 
-The emergence of Large Language Models (LLMs) has transformed artificial
-intelligence research and applications. While general-purpose models
-like GPT-4 and Claude demonstrate impressive capabilities across a wide
-range of tasks, they often lack the depth of expertise required for
-specialized domains. This limitation has led to the development of
-domain-expert LLMs---models fine-tuned or prompted to excel in specific
-fields such as medicine, law, or scientific research.
+The emergence of Large Language Models (LLMs) has transformed artificial intelligence research and applications. While general-purpose models like GPT-4 and Claude demonstrate impressive capabilities across a wide range of tasks, they often lack the depth of expertise required for specialized domains. This limitation has led to the development of domain-expert LLMs---models fine-tuned or prompted to excel in specific fields such as medicine, law, or scientific research.
 
 ## The Challenge of Domain Expertise in LLMs
 
-Domain expertise in LLMs presents a fundamental tension. On one hand,
-specialization improves performance within a domain by focusing the
-model's capabilities on domain-specific knowledge, terminology, and
-reasoning patterns. On the other hand, this specialization often comes
-at the cost of reduced performance in other domains, creating
-\"knowledge silos\" that mirror the specialization patterns in human
-expertise.
+Domain expertise in LLMs presents a fundamental tension. On one hand, specialization improves performance within a domain by focusing the model's capabilities on domain-specific knowledge, terminology, and reasoning patterns. On the other hand, this specialization often comes at the cost of reduced performance in other domains, creating \"knowledge silos\" that mirror the specialization patterns in human expertise.
 
-General-purpose models attempt to balance breadth and depth, but
-inevitably make trade-offs. As @Smith2023 demonstrated, even the most
-advanced general models show significant performance gaps compared to
-specialized models when evaluated on domain-specific benchmarks. For
-instance, while GPT-4 achieves an average score of 76% across medical
-diagnostic tasks, MedicalGPT---a specialized model---achieves 89% on the
-same benchmark.
+General-purpose models attempt to balance breadth and depth, but inevitably make trade-offs. As @Smith2023 demonstrated, even the most advanced general models show significant performance gaps compared to specialized models when evaluated on domain-specific benchmarks. For instance, while GPT-4 achieves an average score of 76% across medical diagnostic tasks, MedicalGPT---a specialized model---achieves 89% on the same benchmark.
 
 ## The Need for Multi-Domain Integration
 
-Real-world problems rarely confine themselves to neat disciplinary
-boundaries. A sports scientist studying sprint performance must
-integrate knowledge from biomechanics, exercise physiology, nutrition,
-and psychology. A climate researcher needs to combine expertise from
-atmospheric science, oceanography, ecology, and data analysis.
+Real-world problems rarely confine themselves to neat disciplinary boundaries. A sports scientist studying sprint performance must integrate knowledge from biomechanics, exercise physiology, nutrition, and psychology. A climate researcher needs to combine expertise from atmospheric science, oceanography, ecology, and data analysis.
 
 Current approaches to multi-domain problems with LLMs typically involve:
 
@@ -51,23 +40,16 @@ Current approaches to multi-domain problems with LLMs typically involve:
 -   Creating custom fine-tuned models for specific interdisciplinary
     applications
 
-Each approach has significant limitations. General models lack depth,
-manual integration is time-consuming and requires human expertise, and
-custom models are expensive to develop and maintain.
+Each approach has significant limitations. General models lack depth, manual integration is time-consuming and requires human expertise, and custom models are expensive to develop and maintain.
 
 ## Existing Approaches and Their Limitations
 
 Several approaches have emerged to address the challenge of combining
 domain expertise in LLMs:
 
-**Prompt Engineering**: Techniques such as chain-of-thought [@Wei2022]
-and few-shot learning [@Brown2020] can enhance domain performance, but
-these approaches are limited by context windows and don't fundamentally
-address the expertise gap.
+**Prompt Engineering**: Techniques such as chain-of-thought [@Wei2022] and few-shot learning [@Brown2020] can enhance domain performance, but these approaches are limited by context windows and don't fundamentally address the expertise gap.
 
-**Retrieval-Augmented Generation (RAG)**: RAG systems [@Lewis2020]
-augment LLMs with external knowledge bases, but traditional
-implementations typically use a single retrieval system, limiting their
+**Retrieval-Augmented Generation (RAG)**: RAG systems [@Lewis2020] augment LLMs with external knowledge bases, but traditional implementations typically use a single retrieval system, limiting their utility.
 ability to effectively integrate multiple domains.
 
 **Model Merging**: Techniques like TIES-Merging [@Yadav2023] allow the
@@ -92,23 +74,17 @@ This white paper makes the following contributions:
 3.  Empirical evaluation of these patterns across multiple
     interdisciplinary use cases
 
-4.  DomainFusion: an open-source Python framework that implements these
+4.  Combine Harvester: an open-source Python framework that implements these
     patterns with a simple, extensible API
 
 5.  A roadmap for future research and development in multi-domain AI
     systems
 
-Our work bridges the gap between theoretical approaches to model
-combination and practical implementation, providing researchers and
-practitioners with both conceptual tools and software components to
-build effective multi-domain AI systems.
+Our work bridges the gap between theoretical approaches to model combination and practical implementation, providing researchers and practitioners with both conceptual tools and software components to build effective multi-domain AI systems.
 
 # Theoretical Framework
 
-To effectively combine domain-expert LLMs, we must first establish a
-theoretical foundation that defines domain expertise in the context of
-language models and provides a framework for understanding different
-approaches to knowledge integration.
+To effectively combine domain-expert LLMs, we must first establish a theoretical foundation that defines domain expertise in the context of language models and provides a framework for understanding different approaches to knowledge integration.
 
 ## Defining Domain Expertise in LLMs
 
@@ -128,9 +104,7 @@ elements typical of communication within a domain. This includes
 technical writing styles, visualization conventions, and rhetorical
 patterns.
 
-A domain-expert LLM demonstrates superior performance along these
-dimensions within its domain of specialization. Formally, we can define
-a domain-expert model $M_D$ for domain $D$ as a model that satisfies:
+A domain-expert LLM demonstrates superior performance along these dimensions within its domain of specialization. Formally, we can define a domain-expert model $M_D$ for domain $D$ as a model that satisfies:
 
 $$P(M_D, T_D) > P(M_G, T_D)$$
 
@@ -164,9 +138,7 @@ performance, computational efficiency, and implementation complexity.
 
 ## Evaluation Metrics for Multi-Domain Expertise
 
-Evaluating multi-domain expertise presents unique challenges.
-Traditional metrics for LLM evaluation typically focus on performance
-within a single domain or on general capabilities. We propose the
+Evaluating multi-domain expertise presents unique challenges. Traditional metrics for LLM evaluation typically focus on performance within a single domain or on general capabilities. We propose the
 following metrics specifically designed for multi-domain systems:
 
 **Cross-Domain Accuracy (CDA)**: The accuracy of responses to queries
@@ -225,15 +197,11 @@ patterns presented in the following sections.
 
 # Architectural Patterns
 
-Based on our theoretical framework, we present five architectural
-patterns for combining domain-expert LLMs, each with distinct
-characteristics, advantages, and implementation considerations.
+Based on our theoretical framework, we present five architectural patterns for combining domain-expert LLMs, each with distinct characteristics, advantages, and implementation considerations.
 
 ## Router-Based Ensembles
 
-Router-based ensembles direct queries to the most appropriate domain
-expert model based on the query content. This approach is particularly
-effective when queries can be clearly categorized into distinct domains.
+Router-based ensembles direct queries to the most appropriate domain expert model based on the query content. This approach is particularly effective when queries can be clearly categorized into distinct domains.
 
 ### Architecture
 
@@ -271,9 +239,7 @@ The flow of information in this architecture is as follows:
 
 ### Routing Algorithms
 
-The effectiveness of a router-based ensemble depends significantly on
-the routing algorithm. We present four approaches to routing, each with
-different characteristics:
+The effectiveness of a router-based ensemble depends significantly on the routing algorithm. We present four approaches to routing, each with different characteristics:
 
 **Keyword-Based Routing**: The simplest approach, using predefined
 keywords or phrases associated with each domain to classify queries.
@@ -321,11 +287,7 @@ ExtractDomain(response) domain default_domain
 :::
 :::
 
-Our empirical evaluations show that embedding-based routing provides the
-best balance of accuracy and computational efficiency for most
-applications, while LLM-based routing offers the highest accuracy for
-complex, ambiguous queries at the cost of increased latency and
-computational requirements.
+Our empirical evaluations show that embedding-based routing provides the best balance of accuracy and computational efficiency for most applications, while LLM-based routing offers the highest accuracy for complex, ambiguous queries at the cost of increased latency and computational requirements.
 
 ### Advantages and Limitations
 
@@ -359,13 +321,13 @@ However, this approach also has limitations:
 
 ### Implementation Details
 
-In the DomainFusion framework, router-based ensembles are implemented
+In the Combine Harvester framework, router-based ensembles are implemented
 through the `Ensemble` class, which accepts a router implementation and
 a registry of models:
 
 ``` {.python language="Python" caption="Router-Based Ensemble Implementation"}
-from domainfusion import Ensemble, ModelRegistry
-from domainfusion.routers import EmbeddingRouter
+from combineharvester import Ensemble, ModelRegistry
+from combineharvester.routers import EmbeddingRouter
 
 # Register domain expert models
 registry = ModelRegistry()
@@ -409,7 +371,7 @@ return multiple experts, and their responses can be combined using a
 mixer:
 
 ``` {.python language="Python" caption="Multi-Domain Routing with Mixing"}
-from domainfusion.mixers import SynthesisMixer
+from combineharvester.mixers import SynthesisMixer
 
 # Create a mixer
 mixer = SynthesisMixer(synthesis_model=registry.get("general"))
@@ -436,10 +398,7 @@ strategies, domain experts, and response integration approaches.
 
 ## Sequential Chaining
 
-Sequential chaining passes queries through multiple domain experts in
-sequence, with each expert building on the insights provided by previous
-experts. This approach is particularly effective for problems that
-require progressive analysis across multiple domains.
+Sequential chaining passes queries through multiple domain experts in sequence, with each expert building on the insights provided by previous experts. This approach is particularly effective for problems that require progressive analysis across multiple domains.
 
 ### Architecture
 
@@ -536,17 +495,11 @@ Original query: {query}
 Synthesize these perspectives into a comprehensive, integrated response that addresses the query while maintaining consistency across domains.
 ```
 
-Our empirical evaluations show that explicit role definition works best
-for initial experts in the chain, while critique and extend prompts are
-more effective for middle experts, and integration prompts are essential
-for the final expert.
+Our empirical evaluations show that explicit role definition works best for initial experts in the chain, while critique and extend prompts are more effective for middle experts, and integration prompts are essential for the final expert.
 
 ### Handling Context Windows and Information Transfer
 
-A key challenge in sequential chaining is managing the growing context
-as information flows through the chain. As each expert adds their
-analysis, the total context can exceed the context window of subsequent
-models. We present several strategies for addressing this challenge:
+A key challenge in sequential chaining is managing the growing context as information flows through the chain. As each expert adds their analysis, the total context can exceed the context window of subsequent models. We present several strategies for addressing this challenge:
 
 **Summarization**: Insert a summarization step between experts to
 condense previous analyses:
@@ -599,18 +552,17 @@ def selective_context(query, previous_responses, current_domain, selector):
 **Hierarchical Chaining**: Organize experts into groups, with a
 synthesizer for each group:
 
-Our evaluations show that hierarchical chaining with selective context
-provides the best balance of information preservation and context
-management for most applications.
+Our evaluations show that hierarchical chaining with selective context provides the best balance of information preservation and context management for most applications.
+
 
 ### Implementation Details
 
-In the DomainFusion framework, sequential chaining is implemented
+In the Combine Harvester framework, sequential chaining is implemented
 through the `Chain` class, which accepts a list of models and optional
 prompt templates:
 
 ``` {.python language="Python" caption="Sequential Chain Implementation"}
-from domainfusion import Chain, ModelRegistry
+from combineharvester import Chain, ModelRegistry
 
 # Register domain expert models
 registry = ModelRegistry()
@@ -666,12 +618,12 @@ chain = Chain(
 response = chain.generate("How can I optimize my sprint training to improve both performance and recovery?")
 ```
 
-For handling longer contexts, DomainFusion provides the
+For handling longer contexts, Combine Harvester provides the
 `SummarizingChain` class, which automatically summarizes intermediate
 responses when they exceed a specified length:
 
 ``` {.python language="Python" caption="Summarizing Chain Implementation"}
-from domainfusion import SummarizingChain
+from combineharvester import SummarizingChain
 
 # Create a summarizing chain
 chain = SummarizingChain(
@@ -839,14 +791,14 @@ strong reasoning capabilities as the meta-expert.
 
 ### Implementation Details
 
-In the DomainFusion framework, the Mixture of Experts pattern is
+In the Combine Harvester framework, the Mixture of Experts pattern is
 implemented through the `MixtureOfExperts` class, which accepts a
 confidence estimator, a set of models, and a mixer:
 
 ``` {.python language="Python" caption="Mixture of Experts Implementation"}
-from domainfusion import MixtureOfExperts, ModelRegistry
-from domainfusion.confidence import EmbeddingConfidence
-from domainfusion.mixers import SynthesisMixer
+from combineharvester import MixtureOfExperts, ModelRegistry
+from combineharvester.confidence import EmbeddingConfidence
+from combineharvester.mixers import SynthesisMixer
 
 # Register domain expert models
 registry = ModelRegistry()
@@ -898,10 +850,10 @@ response = moe.generate("What is the optimal stride frequency for elite sprinter
 ```
 
 For applications requiring more control over the weighting mechanism,
-DomainFusion provides several confidence estimator implementations:
+Combine Harvester provides several confidence estimator implementations:
 
 ``` {.python language="Python" caption="Confidence Estimator Options"}
-from domainfusion.confidence import KeywordConfidence, ClassifierConfidence, LLMConfidence
+from combineharvester.confidence import KeywordConfidence, ClassifierConfidence, LLMConfidence
 
 # Keyword-based confidence
 keyword_confidence = KeywordConfidence()
@@ -1178,13 +1130,13 @@ capabilities.
 
 ### Implementation Details
 
-In the DomainFusion framework, knowledge distillation is implemented
+In the Combine Harvester framework, knowledge distillation is implemented
 through the `Distiller` class, which manages the distillation process:
 
 ``` {.python language="Python" caption="Knowledge Distillation Implementation"}
-from domainfusion import Distiller, ModelRegistry
-from domainfusion.data import SyntheticDataGenerator, AdversarialDataGenerator
-from domainfusion.trainers import IntegrationTrainer
+from combineharvester import Distiller, ModelRegistry
+from combineharvester.data import SyntheticDataGenerator, AdversarialDataGenerator
+from combineharvester.trainers import IntegrationTrainer
 
 # Register teacher models
 registry = ModelRegistry()
@@ -1242,11 +1194,11 @@ distilled_model = distiller.distill()
 distilled_model.save("./distilled_model")
 ```
 
-For more control over the integration of teacher responses, DomainFusion
+For more control over the integration of teacher responses, Combine Harvester
 provides the `ResponseIntegrator` class:
 
 ``` {.python language="Python" caption="Response Integration"}
-from domainfusion.integration import LLMResponseIntegrator
+from combineharvester.integration import LLMResponseIntegrator
 
 # Create a response integrator
 integrator = LLMResponseIntegrator(
@@ -1440,14 +1392,14 @@ storage requirements.
 
 ### Implementation Details
 
-In the DomainFusion framework, multi-domain RAG is implemented through
+In the Combine Harvester framework, multi-domain RAG is implemented through
 the `MultiDomainRAG` class, which manages multiple knowledge bases and
 retrieval strategies:
 
 ``` {.python language="Python" caption="Multi-Domain RAG Implementation"}
-from domainfusion import MultiDomainRAG, ModelRegistry
-from domainfusion.rag import VectorStore, DomainRouter
-from domainfusion.rag.retrievers import HybridRetriever
+from combineharvester import MultiDomainRAG, ModelRegistry
+from combineharvester.rag import VectorStore, DomainRouter
+from combineharvester.rag.retrievers import HybridRetriever
 
 # Register models
 registry = ModelRegistry()
@@ -1473,16 +1425,38 @@ nutrition_store = VectorStore(
 # Load documents into vector stores
 biomechanics_store.add_documents("path/to/biomechanics_docs", chunk_size=500)
 physiology_store.add_documents("path/to/physiology_docs", chunk_size=500)
-nutrition_store.add_documents("path
+nutrition_store.add_documents("path/to/nutrition_docs", chunk_size=500)
 
+# Create the multi-domain RAG system
+rag = MultiDomainRAG(
+    embedding_model=registry.get("embedding_model"),
+    generation_model=registry.get("generation_model"),
+    vector_stores=[biomechanics_store, physiology_store, nutrition_store],
+    domain_router=DomainRouter(
+        embedding_model=registry.get("embedding_model"),
+        domains=["biomechanics", "physiology", "nutrition"]
+    ),
+    retriever=HybridRetriever(
+        embedding_model=registry.get("embedding_model"),
+        vector_stores=[biomechanics_store, physiology_store, nutrition_store]
+    )
+)
 
-\section{The DomainFusion Framework}
+# Generate a response
+response = rag.generate("What is the optimal stride frequency for elite sprinters and how does it relate to muscle fiber type?")
+```
 
-The DomainFusion framework is an open-source Python package that implements the architectural patterns described in this paper. It provides a flexible, extensible API for combining domain-expert LLMs in various configurations.
+This implementation allows for flexible configuration of multi-domain
+RAG systems, with customizable embedding models, generation models,
+vector stores, domain routers, and retrievers.
+
+## The Combine Harvester Framework
+
+The Combine Harvester framework is an open-source Python package that implements the architectural patterns described in this paper. It provides a flexible, extensible API for combining domain-expert LLMs in various configurations.
 
 \subsection{System Architecture}
 
-DomainFusion follows a modular architecture organized around five core concepts:
+Combine Harvester follows a modular architecture organized around five core concepts:
 
 \begin{enumerate}
     \item \textbf{Models}: Abstractions for interacting with various LLM providers
@@ -1497,7 +1471,7 @@ Figure \ref{fig:system_architecture} illustrates the high-level architecture:
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[node distance=2cm, auto, thick]
-    \node[rectangle, draw, minimum width=4cm, minimum height=1cm] (api) {DomainFusion API};
+    \node[rectangle, draw, minimum width=4cm, minimum height=1cm] (api) {Combine Harvester API};
     
     \node[rectangle, draw, minimum width=2.5cm, minimum height=1cm, below left=1cm and -1cm of api] (models) {Models};
     \node[rectangle, draw, minimum width=2.5cm, minimum height=1cm, below left=1cm and 2cm of api] (routers) {Routers};
@@ -1523,7 +1497,7 @@ Figure \ref{fig:system_architecture} illustrates the high-level architecture:
     \draw[->] (registry) -- (openai);
     \draw[->] (registry) -- (anthropic);
 \end{tikzpicture}
-\caption{DomainFusion system architecture}
+\caption{Combine Harvester system architecture}
 \label{fig:system_architecture}
 \end{figure}
 
@@ -1556,7 +1530,7 @@ class Model(ABC):
         pass
 ```
 
-DomainFusion provides implementations for popular LLM providers:
+Combine Harvester provides implementations for popular LLM providers:
 
 -   `OllamaModel`: For local models running with Ollama
 
@@ -1585,7 +1559,7 @@ class Router(ABC):
         pass
 ```
 
-DomainFusion provides several router implementations:
+Combine Harvester provides several router implementations:
 
 -   `KeywordRouter`: Routes based on keyword matching
 
@@ -1648,7 +1622,7 @@ class Mixer(ABC):
         pass
 ```
 
-DomainFusion provides several mixer implementations:
+Combine Harvester provides several mixer implementations:
 
 -   `DefaultMixer`: Returns the response with highest confidence
 
@@ -1674,16 +1648,16 @@ class ModelRegistry:
     def add_model(self, name: str, engine: str, model_name: str, **kwargs) -> None:
         """Register a new model."""
         if engine == "ollama":
-            from domainfusion.models.ollama import OllamaModel
+            from combineharvester.models.ollama import OllamaModel
             self.models[name] = OllamaModel(model_name=model_name, **kwargs)
         elif engine == "openai":
-            from domainfusion.models.openai import OpenAIModel
+            from combineharvester.models.openai import OpenAIModel
             self.models[name] = OpenAIModel(model_name=model_name, **kwargs)
         elif engine == "anthropic":
-            from domainfusion.models.anthropic import AnthropicModel
+            from combineharvester.models.anthropic import AnthropicModel
             self.models[name] = AnthropicModel(model_name=model_name, **kwargs)
         elif engine == "huggingface":
-            from domainfusion.models.huggingface import HuggingFaceModel
+            from combineharvester.models.huggingface import HuggingFaceModel
             self.models[name] = HuggingFaceModel(model_name=model_name, **kwargs)
         else:
             raise ValueError(f"Unsupported engine: {engine}")
@@ -1701,7 +1675,7 @@ class ModelRegistry:
 
 ## Extension Points
 
-DomainFusion is designed to be extensible, with clear extension points
+Combine Harvester is designed to be extensible, with clear extension points
 for customization:
 
 -   **Custom Models**: Implement the `Model` interface to add support
@@ -1721,7 +1695,7 @@ for customization:
 
 ## API Design
 
-DomainFusion provides a simple, intuitive API for common use cases while
+Combine Harvester provides a simple, intuitive API for common use cases while
 allowing advanced customization when needed:
 
 # Empirical Evaluation
@@ -1900,7 +1874,7 @@ expertise, integration quality, and computational efficiency.
 
 ## Summary of Contributions
 
-This white paper has presented DomainFusion, a comprehensive framework
+This white paper has presented Combine Harvester, a comprehensive framework
 for combining domain-expert LLMs to address complex, interdisciplinary
 problems. Our key contributions include:
 
@@ -1919,7 +1893,7 @@ problems. Our key contributions include:
 Our results demonstrate that carefully designed combinations of
 domain-expert models can significantly outperform both general-purpose
 models and individual domain experts on cross-domain tasks. The
-DomainFusion framework provides a practical way to leverage these
+Combine Harvester framework provides a practical way to leverage these
 approaches in real-world applications.
 
 ## Limitations
@@ -2039,3 +2013,5 @@ challenges we face.
 # Appendix B: Benchmark Details
 
 # Appendix C: Example Implementations
+
+</div>
